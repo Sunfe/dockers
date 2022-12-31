@@ -1,0 +1,34 @@
+version: '3'
+services:
+  gerrit:
+    image: gerritcodereview/gerrit:3.7.0-ubuntu20-20221222
+    container_name: gerrit
+    ports:
+      - "8080:8080"
+      - "29418:29418"
+    volumes:
+            #      - /home/gerrit_home/etc:/var/gerrit/etc
+            #      - /home/gerrit_home/db:/var/gerrit/db
+      - /home/gerrit_home/git:/var/gerrit/git
+      - /home/gerrit_home/index:/var/gerrit/index
+      - /home/gerrit_home/cache:/var/gerrit/cache
+    environment:
+      - CANONICAL_WEB_URL=http://192.168.2.100:8080
+
+        # ldap:
+        #  image: osixia/openldap
+        #  ports:
+        #    - "389:389"
+        #    - "636:636"
+        #  environment:
+        #    - LDAP_ADMIN_PASSWORD=secret
+        #  volumes:
+        #    - /home/gerrit_home/ldap/var:/var/lib/ldap
+        #    - /home/gerrit_home/ldap/etc:/etc/ldap/slapd.d
+        #
+        # ldap-admin:
+        #   image: osixia/phpldapadmin
+        #   ports:
+        #     - "6443:443"
+        #   environment:
+        #     - PHPLDAPADMIN_LDAP_HOSTS=ldap
