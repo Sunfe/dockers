@@ -1,0 +1,45 @@
+FROM jenkins/jenkins:latest
+USER root
+RUN set -x \
+    && apt-get update  \
+    && apt-get -y install apache2-utils \
+    && apt-get -y install build-essential gcc clang llvm cmake autoconf automake \
+    && apt-get -y install python3 perl lua5.3 ruby libreadline-dev sqlite3 \
+    && apt-get -y install sudo \
+    && apt-get -y install vim grep nano sed gawk less \
+    && apt-get -y install net-tools inetutils-ping iproute2 wget curl tcpdump \
+    && apt-get -y install git-core git \
+    && apt-get -y install ssh sshfs sshpass \
+    && apt-get -y install universal-ctags global \
+    && apt-get -y install tar zip unzip p7zip-full xz-utils \
+    && apt-get -y install dash libtool gettext autopoint \
+    && apt-get -y install texinfo texlive texlive-extra-utils \
+    && apt-get -y install valgrind nodejs softhsm2 datefudge lcov \
+    && apt-get -y install dieharder openssl abigail-tools socat ppp util-linux \
+    && apt-get -y install cron htop tree progress colordiff diffutils iftop \
+    && apt-get -y install tcl tk expect \
+    && apt-get -y install indent mlocate ripgrep rsync autojump xclip dstat pv \
+    && apt-get -y install python3-pip \
+    && apt-get -y install python3-setuptools \
+    && apt-get -y install openssh-server \
+    && pip3 install ninja2 \
+    && echo "PermitRootLogin yes" >> /etc/ssh/sshd_config \
+    && echo "root:toor" | chpasswd \
+    && echo "jenkins:jenkins" | chpasswd \
+    && ssh-keygen -f ~/.ssh/id_rsa -P '' -q
+
+# install vjunit
+RUN mkdir -p /local/tools && cd /local/tools && \
+    git clone https://github.com/ahsayde/vjunit.git && \
+    cd vjunit && \
+    sed -i 's/children = testcase.getchildren()/children = list(testcase)/g' vjunit/vjunit.py && \
+    pip3 uninstall -y vjunit && \
+    python3 setup.py install && \
+    mkdir -p /local/jenkins
+
+# install jenkins_plugins
+COPY jenkins_plugins_list.yaml /local/jenkins
+RUN  jenkins-plugin-cli -f /local/jenkins/jenkins_plugins_list.yaml
+
+USER jenkins
+ENTRYPOINT ["/usr/bin/tini","--","/usr/local/bin/jenkins.sh"]

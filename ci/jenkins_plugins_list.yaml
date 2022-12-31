@@ -1,0 +1,108 @@
+plugins:
+  - artifactId: htmlpublisher
+    source:
+      version: 1.31
+  - artifactId: ansicolor
+    source:
+      version: 1.0.2
+  - artifactId: build-user-vars-plugin
+    source:
+      version: 1.9
+  - artifactId: build-name-setter
+    source:
+      version: 2.2.0
+  - artifactId: description-setter
+    source:
+      version: 1.10
+  - artifactId: git-parameter
+    source:
+      version: 0.9.18
+  - artifactId: role-strategy
+    source:
+      version: 3.2.0
+  - artifactId: jobConfigHistory
+    source:
+      version: 2.30
+  - artifactId: material-theme
+    source:
+      version: 0.4.1
+  - artifactId: console-column-plugin
+    source:
+      version: 1.5
+  - artifactId: display-console-output
+    source:
+      version: 1.0.5
+  - artifactId: versionnumber
+    source:
+      version: 1.10
+  - artifactId: figlet-buildstep
+    source:
+      version: 0.2
+  - artifactId: build-failure-analyzer
+    source:
+      version: 2.27.0
+  - artifactId: folder-auth
+    source:
+      version: 1.4
+  - artifactId: thinBackup
+    source:
+      version: 1.14
+  - artifactId: embeddable-build-status
+    source:
+      version: 2.0	  
+  - artifactId: timestamper
+    source:
+      version: 1.21	  
+  - artifactId: groovy
+    source:
+      version: 2.4	  
+  - artifactId: extensible-choice-parameter
+    source:
+      version: 1.8.0	  
+  - artifactId: python
+    source:
+      version: 1.3	  
+  - artifactId: global-build-stats
+    source:
+      version: 1.5 	  	  
+  - artifactId: ldap
+    source:
+      version: 2.12	  	  
+  - artifactId: git-push
+    source:
+      version: latest	  	  
+  - artifactId: gitflow
+    source:
+      version: 1.0.1	  	  
+  - artifactId: gerrit
+    source:
+      version: 0.7	  	  
+  - artifactId: gerrit-trigger
+    source:
+      version: 2.38.0	  	  
+  - artifactId: gerrit-code-review
+    source:
+      version: 0.4.7 	  
+  - artifactId: gerrit-trigger
+    source:
+      version: 2.38.0	 	  
+  - artifactId: gerrit-verify-status-reporter
+    source:
+      version: 0.0.3	  
+  - artifactId: gitlab-api
+    source:
+      version: latest
+  - artifactId: gitlab-branch-source
+    source:
+      version: 1.5.9 
+  - artifactId: gitlab-merge-request-jenkins
+    source:
+      version: 2.0.0
+  - artifactId: gitlab-oauth
+    source:
+      version: latest
+  - artifactId: gitlab-plugin
+    source:
+      version: latest
+
+
